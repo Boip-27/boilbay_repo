@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Sistema de Gestión Vehicular')
 
 @section('content_header')
    
@@ -21,7 +21,7 @@
 @stop
 
 @section('content')
-    <p>Bienvenido al sistema de gestión vehicular de la Policia Nacional</p>
+    <p>Bienvenido al sistemagestión vehicular de la Policia Nacional</p>
 @stop
 
 @section('css')

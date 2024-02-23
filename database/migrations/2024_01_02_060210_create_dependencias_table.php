@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('dependencia', function (Blueprint $table) {
+        Schema::create('dependencias', function (Blueprint $table) {
             $table->id();
             $table->string('provincia');
             $table->integer('num_distrito');
@@ -24,6 +24,15 @@ return new class extends Migration
             $table->integer('num_subcircuito');
             $table->string('cod_subcircuito');
             $table->string('subcircuito');
+
+            $table->unsignedBigInteger('user_id')->unique()->nullable();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
@@ -31,7 +40,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('dependencia');
     }

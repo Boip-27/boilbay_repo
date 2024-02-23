@@ -3,14 +3,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+
     use HasApiTokens, HasFactory, Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -19,8 +24,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'identify',
+        'birth',
+        'blood',
+        'city',
+        'phone',
+        'grade',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -39,7 +50,29 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    protected function name(): Attribute
+    {
+        return new Attribute(
+
+            set: fn ($value) => ucwords($value)
+
+        );
+    }
+    public function dependencia()
+    {
+        return $this->hasOne('App\Models\Admin\Dependencia');
+    }
+
+    public function transporte()
+    {
+        return $this->hasOne('App\Models\Admin\Transporte');
+    }
+    public function mantenimientos()
+    {
+        return $this->hasmany('App\Models\Admin\Mantenimiento');
+    }
 }

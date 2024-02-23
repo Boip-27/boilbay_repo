@@ -34,11 +34,11 @@
                 </span>
             @enderror
         </div>
-      
+    
         {{-- Identify field --}}
         <div class="input-group mb-3">
-            <input type="text" name="identify" class="form-control @error('identify') is-invalid @enderror"
-                   value="{{ old('identify') }}" placeholder="{{ __('Identificación') }}" autofocus>
+            <input type="number" name="identify" class="form-control @error('identify') is-invalid @enderror"
+                   value="{{ old('identify') }}" placeholder="{{ __('Cédula') }}" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -55,7 +55,7 @@
 
         {{-- birth field --}}
         <div class="input-group mb-3">
-            <input type="text" name="birth" class="form-control @error('birth') is-invalid @enderror"
+            <input type="date" name="birth" class="form-control @error('birth') is-invalid @enderror"
                    value="{{ old('birth') }}" placeholder="{{ __('Fecha de nacimiento') }}" autofocus>
 
             <div class="input-group-append">
@@ -92,7 +92,7 @@
         {{-- city field --}}
         <div class="input-group mb-3">
             <input type="text" name="city" class="form-control @error('city') is-invalid @enderror"
-                   value="{{ old('city') }}" placeholder="{{ __('Lugar de nacimiento') }}" autofocus>
+                   value="{{ old('city') }}" placeholder="{{ __('Ciudad de nacimiento') }}" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -109,7 +109,7 @@
 
         {{-- phone field --}}
         <div class="input-group mb-3">
-            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
+            <input type="numb" name="phone" class="form-control @error('phone') is-invalid @enderror"
                    value="{{ old('phone') }}" placeholder="{{ __('Celular') }}" autofocus>
 
             <div class="input-group-append">
@@ -124,7 +124,6 @@
                 </span>
             @enderror
         </div>
-
         
         {{-- grade field --}}
         <div class="input-group mb-3">

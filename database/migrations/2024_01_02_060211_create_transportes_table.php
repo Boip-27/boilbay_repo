@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('vehicle', function (Blueprint $table) {
+        Schema::create('transportes', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
             $table->string('placa');
@@ -21,17 +21,28 @@ return new class extends Migration
             $table->string('motor');
             $table->integer('kilometraje');
             $table->integer('cilindraje');
-            $table->integer('carga');
+            $table->string('carga');
             $table->integer('pasajeros');
+
+            $table->unsignedBigInteger('user_id')->unique()->nullable();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+            
             $table->timestamps();
+
+
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('vehicle');
+        Schema::dropIfExists('transportes');
     }
 };
